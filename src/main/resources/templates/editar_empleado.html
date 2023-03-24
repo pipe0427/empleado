@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Editar estudiante</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+<body>
+  <nav class="navbar navbar-expand-md bg-dark navbar-dark">
+    <a class="navbar-brand" href="#"> Control de estudiantes</a>
+    <!-- Navbar links -->
+    <div class="collapse navbar-collapse" id="collapsibleNavbar">
+      <ul class="navbar-nav">
+        <li class="nav-item"><a class="nav-link"
+                                th:href="@{/empleados}">Control de empleados</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <br>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-6 col-md-6 col-sm-6 container justify-content-center card">
+        <h1 class="text-center">Edición de empleados</h1>
+        <div class="card-body">
+          <form th:action="@{/empleados/{id}(codigo=${empleado.id})}" th:object="${empleado}" method="POST">
+            <div class="form-group">
+              <label>Nombre : </label>
+              <input type="text" name="nombre" th:field="*{nombre}" class="form-control" placeholder="Digite su nombre : " required>
+            </div>
+
+            <div class="form-group">
+              <label>Apellido 1: </label>
+              <input type="text" name="apellido1" th:field="*{apellido1}" class="form-control" placeholder="Digite su primer apellido : " required>
+            </div>
+
+            <div class="form-group">
+                <label>Apellido 2: </label>
+                <input type="text" name="apellido2" th:field="*{apellido2}" class="form-control" placeholder="Digite su segundo apellido : " required>
+              </div>
+
+              <div class="form-group">
+                <label>Departamento : </label>
+                <br/>
+                <select name="departamento" id="departamento"  class="form-">
+                    <option value="seleccione">Seleccione el departamento</option>
+                    <option value="" th:each="departamento : ${departamentos}" th:value="${departamento.nombre}"></option>
+                </select>
+            </div>
+
+            <div class="box-footer">
+              <button class="btn btn-success">Guardar</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
